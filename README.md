@@ -65,3 +65,13 @@ Where:
 - `user_id`    - id of the user you plan to work with fleetctl
 - `version`    - fleetctl version which should be build
 - `image_name` - name of the Docker image
+
+## Bonus
+
+If you cloned the directory locally you can benefit from the `run` script.
+Simply adjust it according to your needs and execute it with:
+
+```bash
+./scripts/run
+```
+

@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# Create ~/.fleetctl if it doesn't exist
+if [ ! -d ~/.fleetctl ]; then
+  echo "Create ~/.fleetctl"
+  mkdir ~/.fleetctl
+fi
+
+# If no variable is set view the usage information
+if [ -z $version ] && [ -z $image_name ] && [ -z $ssh_key ]; then
+  echo 'Usage:'
+  script_name="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
+  echo "ssh_key=<path> version=<version> image_name=<name> $script_name"
+  echo -e "\nWhere:"
+  echo '- ssh_key    - absolute path to the desired ssh key'
+  echo '- version    - fleet image version'
+  echo '- image_name - name of the Docker image'
+  echo -e "\n"
+fi
+
+# Check if version environment variable is set
+if [ -z $version ]; then
+  # Set default fleet version
+  echo "No version variable defined"
+  version=0.11.5
+  echo -e "Fall back to default version: $version\n"
+fi
+
+# Check if image_name environment variable is set
+if [ -z $image_name ]; then
+  echo "No image_name variable defined"
+  image_name=czerasz
+  echo -e "Fall back to default image_name: $image_name\n"
+fi
+
+# Check if ssh_key environment variable is set
+if [ -z $ssh_key ]; then
+  echo "No ssh_key variable defined"
+  ssh_key="$HOME/.ssh/id_rsa"
+  echo -e "Fall back to default ssh_key value: $ssh_key\n"
+fi
+
+# Run container
+docker run -it --rm \
+           --volume="$ssh_key:/home/fleet/.ssh/id_rsa:ro" \
+           --volume="$(dirname ~/.fleetctl):/home/fleet/.fleetctl" \
+           --name=fleet --user=fleet \
+           $image_name/fleetctl:$version $@
