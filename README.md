@@ -92,3 +92,8 @@ Now the `./scripts/fleetctl` will be available to your service:
 ./scripts/fleetctl --help
 ```
 
+## Important Note
+
+This image is created with the assumption that you use a desktop user which has the `uid` equal to `1000`.
+For more information check out the `Dockerfile` and the [#7198 issue comment](https://github.com/docker/docker/issues/7198#issuecomment-159736577).
+
