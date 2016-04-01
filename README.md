@@ -68,8 +68,8 @@ Where:
 
 ## Bonus
 
-If you cloned the directory locally you can benefit from the `run` script.
-Simply adjust it according to your needs and execute it with:
+If you cloned the project, you can benefit from the `run` script.
+Simply adjust it according to your needs and execute with:
 
 ```bash
 ./scripts/run
