@@ -1,0 +1,36 @@
+#!/bin/bash
+
+script_dirirectory="$( cd "$( dirname "$0" )" && pwd )"
+
+# If no variable is set view the usage information
+if [ -z $version ] && [ -z $image_name ] && [ -z $ssh_key ]; then
+  echo 'Usage:'
+  script_name="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
+  echo "version=<version> image_name=<name> $script_name"
+  echo -e "\nWhere:"
+  echo '- version    - fleet image version'
+  echo '- image_name - name of the Docker image'
+  echo -e "\n"
+fi
+
+# Check if version environment variable is set
+if [ -z $version ]; then
+  # Set default fleet version
+  echo "No version variable defined"
+  version=0.11.5
+  echo -e "Fall back to default version: $version\n"
+fi
+
+# Check if image_name environment variable is set
+if [ -z $image_name ]; then
+  echo "No image_name variable defined"
+  image_name=czerasz
+  echo -e "Fall back to default image_name: $image_name\n"
+fi
+
+docker run -it --rm \
+           --volume=$script_dirirectory:/data \
+           --name=fleetctl_export \
+           --entrypoint=/bin/bash \
+           --user=root \
+           $image_name/fleetctl:$version -c "cp /usr/bin/fleetctl /data/ && chown fleet:fleet /data/fleetctl"

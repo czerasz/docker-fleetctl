@@ -68,10 +68,27 @@ Where:
 
 ## Bonus
 
+### Run Helper Script
+
 If you cloned the project, you can benefit from the `run` script.
 Simply adjust it according to your needs and execute with:
 
 ```bash
 ./scripts/run
+```
+
+### Export Fleetctl Binary
+
+If you cloned the project, you can benefit from the `export` script.
+Run the following command to download the `fleetctl` binary to the scripts directory:
+
+```bash
+./scripts/export
+```
+
+Now the `./scripts/fleetctl` will be available to your service:
+
+```bash
+./scripts/fleetctl --help
 ```
 
