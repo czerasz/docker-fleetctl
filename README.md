@@ -2,6 +2,8 @@
 
 Use [`fleetctl`](https://github.com/coreos/fleet) inside a Docker container.
 
+[![](https://badge.imagelayers.io/czerasz/fleetctl:latest.svg)](https://imagelayers.io/?images=czerasz/fleetctl:latest 'Get your own badge on imagelayers.io')
+
 ## Usage Examples
 
 - Run container with `fleetctl --help` command:
