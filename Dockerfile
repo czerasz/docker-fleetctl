@@ -1,5 +1,7 @@
 FROM golang:1.6.0
 
+MAINTAINER Michał Czeraszkiewicz <contact@czerasz.com>
+
 ARG FLEET_VERSION=v0.11.5
 
 RUN apt-get update && \
