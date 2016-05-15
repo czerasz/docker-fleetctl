@@ -13,7 +13,7 @@ Use [`fleetctl`](https://github.com/coreos/fleet) inside a Docker container.
              --volume=$HOME/.ssh/id_rsa:/home/fleet/.ssh/id_rsa:ro \
              --volume=$HOME/.fleetctl:/home/fleet/.fleetctl \
              --name=fleet --user=fleet \
-             czerasz/fleetctl --help
+             czerasz/fleetctl:latest --help
   ```
 
   > **NOTE**
@@ -26,7 +26,7 @@ Use [`fleetctl`](https://github.com/coreos/fleet) inside a Docker container.
              --volume=$HOME/.ssh/digitalocean.com:/home/fleet/.ssh/id_rsa:ro \
              --volume=$HOME/.fleetctl:/home/fleet/.fleetctl \
              --name=fleet --user=fleet \
-             czerasz/fleetctl
+             czerasz/fleetctl:latest
   ```
 
 - Run bash shell inside the container to execute multiple commands:
@@ -37,7 +37,7 @@ Use [`fleetctl`](https://github.com/coreos/fleet) inside a Docker container.
              --volume=$HOME/.fleetctl:/home/fleet/.fleetctl \
              --name=fleet --user=fleet \
              --entrypoint=/bin/bash \
-             czerasz/fleetctl
+             czerasz/fleetctl:latest
   ```
 
 ## Build Image Locally
@@ -99,3 +99,8 @@ Now the `./scripts/fleetctl` will be available to your service:
 This image is created with the assumption that you use a desktop user which has the `uid` equal to `1000`.
 For more information check out the `Dockerfile` and the [#7198 issue comment](https://github.com/docker/docker/issues/7198#issuecomment-159736577).
 
+## Resources:
+
+- http://www.computerhope.com/unix/useradd.htm
+- http://www.computerhope.com/unix/groupadd.htm
+- [Start ssh-agent](http://stackoverflow.com/a/21909432/325852)

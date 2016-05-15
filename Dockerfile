@@ -2,7 +2,7 @@ FROM golang:1.6.0
 
 MAINTAINER Michał Czeraszkiewicz <contact@czerasz.com>
 
-ARG FLEET_VERSION=v0.11.5
+ARG FLEET_VERSION=v0.12.0
 
 RUN apt-get update && \
     apt-get install -y git ssh openssh-client && \
@@ -12,7 +12,7 @@ WORKDIR /tmp/fleet
 
 # Install fleet
 RUN git clone --quiet -b $FLEET_VERSION --single-branch https://github.com/coreos/fleet.git ./ && \
-    sh build && \
+    bash build && \
     mv ./bin/fleetctl /usr/bin/ && \
     rm -rf /tmp/fleet
 
