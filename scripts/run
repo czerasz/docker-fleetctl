@@ -1,5 +1,11 @@
 #!/bin/bash
 
+script_dirirectory="$( cd "$( dirname "$0" )" && pwd )"
+project_dirirectory=$script_dirirectory/..
+
+# Load defaults
+source $project_dirirectory/.env
+
 # Create ~/.fleetctl if it doesn't exist
 if [ ! -d ~/.fleetctl ]; then
   echo "Create ~/.fleetctl"
@@ -22,7 +28,7 @@ fi
 if [ -z $version ]; then
   # Set default fleet version
   echo "No version variable defined"
-  version=0.11.5
+  version=$default_version
   echo -e "Fall back to default version: $version\n"
 fi
 

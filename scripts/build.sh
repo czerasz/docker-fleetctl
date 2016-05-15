@@ -6,6 +6,9 @@ set -e
 script_dirirectory="$( cd "$( dirname "$0" )" && pwd )"
 project_dirirectory=$script_dirirectory/..
 
+# Load defaults
+source $project_dirirectory/.env
+
 # If no variable is set view the usage information
 if [ -z $user_id ] && [ -z $version ] && [ -z $image_name ]; then
   echo 'Usage:'
@@ -26,10 +29,10 @@ if [ -z $user_id ]; then
 fi
 
 # Check if version environment variable is set
-if [ -z $version ]; then
+if [ -z "$version" ]; then
   # Set default fleet version
   echo "No version variable defined"
-  version=0.11.5
+  version=$default_version
   echo -e "Fall back to default version: $version\n"
 fi
 
